@@ -1,0 +1,33 @@
+---
+
+name: Req8 examples
+
+environments:
+  dev:
+    host: localhost:3000
+    secret: "foobar"
+    token: "sometoken"
+  prod:
+    host: https://api.myapp.com
+    secret: "barvaz"
+    token: "sometoken"
+
+headers:
+  my_auth:
+    - "X-My-Secret: {secret}"
+    - "X-My-AuthToken: {token}"
+    - "Content-Type: application/json"
+
+resources:
+  city:
+    headers: my_auth
+    requests:
+      - name: GET collection
+        url: "{host}/v1/city"
+        method: GET
+
+      - name: POST collection
+        url: "{host}/v1/city"
+        method: POST
+        body:
+          {"id": "A123BC", "name": {"en_US": "Stam City", "he_IL": "סתם"}, "image_url": "http://"}
