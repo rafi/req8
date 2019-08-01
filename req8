@@ -30,7 +30,7 @@ args = parser.parse_args()
 def _load_doc(filepath):
     try:
         with open(filepath, 'r') as f:
-            return yaml.load(f.read())
+            return yaml.load(f.read(), Loader=yaml.FullLoader)
     except yaml.YAMLError as ex:
         raise IOError('Unable to load .requests.yml, {}'.format(ex))
 
